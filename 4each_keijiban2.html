@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" text/css href="4each_keijiban.css">
+        <title>4eachblog 掲示板</title>
+
+
+    </head>
+    
+   
+    <!--パスワード変えてね-->
+    <body>
+        <?php
+        mb_internal_encoding("utf8");
+        $pdo=new PDO("mysql:dbname=ensyu;host=localhost;","root","");
+        $stmt=$pdo->query("select*from lesson01");
+        
+       
+        ?>
+        
+        
+        <img class="logo" src="4each.pic/4eachblog_logo.jpg">
+        
+        <header>
+            <ul>
+                <li>トップ</li>
+                <li>プロフィール</li>
+                <li>4eachについて</li>
+                <li>書籍フォーム</li>
+                <li>問い合わせ</li>
+                <li>その他</li>
+                
+
+            </ul>
+        </header>
+        
+              
+      <!--メイン部分-->
+        <main>
+            <div class="main-container">
+    <!--見出し-->
+        <h2>プログラミングに役立つ書籍</h2>
+
+            <div class="box1">
+            
+               <h1>お問い合わせフォーム</h1>
+    
+    <form method="post" action="insert2.php">
+        <div>
+            <label>ハンドルネーム</label>
+            <br>
+            <input type="text" class="text" size="35" name="handlename">
+        </div>
+        
+        <div>
+
+            <label>タイトル</label>
+            <br>
+            <input type="text" class="text" size="35" name="title">
+        </div>
+        
+        
+        <div>
+            <label>コメント</label>
+            <br>
+            <textarea cols="35" rows="7" name="comments"></textarea>
+        </div>
+        
+        <div>
+            <input type="submit" class="submit" value="投稿する">
+        </div>
+
+    </form>
+                
+　<!--メイン下部-->
+
+
+
+             <?php
+                
+            while($row=$stmt->fetch()){
+                
+                echo"<div class='kiji'>";
+                echo"<h4>".$row['title']."</h4>";
+                echo"<div class='contents'>";
+                echo $row['comments'];
+                echo"<div class='handlename'>posted by".$row['handlename']."</div>";
+                echo"</div>";
+                echo"</div>";
+            }
+                
+        ?>             
+          
+                
+                
+                
+                
+              </div>
+
+                  
+        
+                </div>
+            
+<!--サイドメニュー-->
+                
+              <aside class="side-menu">
+              
+                <p ><strong>人気の記事</strong></p>
+                    <li>PHPおすすめ</li>
+                    <li>PHP My Adminの使い方</li>
+                    <li>今人気のエディタ</li>
+                    <li>HTMLの基礎</li>
+                    
+        
+                <p><strong>おすすめリンク</strong></p>
+                    <li>インターノウス株式会社</li>
+                    <li>XAMMPのダウンロード</li>
+                    <li>Eclipsのダウンロード</li>
+                    <li>Bracketsのダウンロード</li>
+                    
+                <p><strong>カテゴリ</strong></p>
+                    <li>HTML</li>
+                    <li>PHP</li>
+                    <li>MySQL</li>
+                    <li>JavaScript</li>
+                    
+              
+            </aside>
+               
+                          
+            </main>
+        
+      <!--フッター-->
+        
+        <footer>
+            copyright internous 4each blog is the one which provides A to Z about programing.
+        </footer>
+        
+        
+        
+        
+        
+         
+    </body>
